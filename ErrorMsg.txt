@@ -1,0 +1,100 @@
+coach@lockerroom:~/udemy/nodejsTesting/todo-tdd$ /usr/bin/node --inspect-brk=7377 node_modules/.bin/jest -i '/home/coach/udemy/nodejsTesting/todo-tdd/test/unit/todo.controller.test.js' -t "should handle errors in getTodos" 
+Debugger listening on ws://127.0.0.1:7377/7210fd7a-598b-444c-b241-8edafffa8354
+For help see https://nodejs.org/en/docs/inspector
+Debugger attached.
+(node:9668) UnhandledPromiseRejectionWarning: [object Object]
+(node:9668) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+(node:9668) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+ FAIL  test/unit/todo.controller.test.js (10.377s)
+  TodoController.getTodos
+    ✕ should handle errors in getTodos (5211ms)
+    ○ skipped should have a getTodos function
+    ○ skipped should call TodoModel.find({})
+    ○ skipped should return response with status 200 and all todos
+  TodoController.createTodo
+    ○ skipped should have a createTodo function
+    ○ skipped should call TodoModel.create
+    ○ skipped should return 201 response code
+    ○ skipped should return json body in response
+    ○ skipped should handle errors
+
+  ● TodoController.getTodos › should handle errors in getTodos
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"message": "Something happened with todo list"}
+
+    Number of calls: 0
+
+      36 |         TodoModel.find.mockReturnValue(rejectedPromise);
+      37 |         await TodoController.createTodo(req, res, next);
+    > 38 |         expect(next).toHaveBeenCalledWith(errorMessage);  
+         |                      ^
+      39 |     });
+      40 | });
+      41 | 
+
+      at Object.toHaveBeenCalledWith (test/unit/todo.controller.test.js:38:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 8 skipped, 9 total
+Snapshots:   0 total
+Time:        10.525s, estimated 11s
+Ran all test suites matching /\/home\/coach\/udemy\/nodejsTesting\/todo-tdd\/test\/unit\/todo.controller.test.js/i with tests matching "should handle errors in getTodos".
+Waiting for the debugger to disconnect...
+Killed
+coach@lockerroom:~/udemy/nodejsTesting/todo-tdd$ 
+
+====================================================================================
+
+coach@lockerroom:~/udemy/nodejsTesting/todo-tdd$ /usr/bin/node --inspect-brk=31135 node_modules/.bin/jest -i '/home/coach/udemy/nodejsTesting/todo-tdd/test/intergration/todo.controller.int.test.js' 
+Debugger listening on ws://127.0.0.1:31135/ab0815bd-7198-40c8-bbd5-cec665e680bf
+For help see https://nodejs.org/en/docs/inspector
+Debugger attached.
+(node:10956) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+ FAIL  test/intergration/todo.controller.int.test.js (15.424s)
+  /todos/
+    ✕ GET /todos/ (5025ms)
+    ✕ POST /todos/ (5005ms)
+    ✓ should return error 500 on malformed data with POST/todos/ (37ms)
+
+  ● /todos/ › GET /todos/
+
+    : Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error:
+
+       6 | 
+       7 | describe(endpointUrl, () => {
+    >  8 |         test("GET " + endpointUrl, async() => {
+         |         ^
+       9 |                 const response = await request(app).get(endpointUrl);
+      10 | 
+      11 |                 expect(response.statusCode).toBe(200);
+
+      at new Spec (node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
+      at Suite.test (test/intergration/todo.controller.int.test.js:8:9)
+      at Object.describe (test/intergration/todo.controller.int.test.js:7:1)
+
+  ● /todos/ › POST /todos/
+
+    : Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error:
+
+      14 |                 expect(response.body[0].done).toBeDefined();
+      15 |         })
+    > 16 |         it("POST " + endpointUrl, async () => {
+         |         ^
+      17 |                 const response = await request(app)
+      18 |                 .post(endpointUrl)
+      19 |                 .send(newTodo);
+
+      at new Spec (node_modules/jest-jasmine2/build/jasmine/Spec.js:116:22)
+      at Suite.it (test/intergration/todo.controller.int.test.js:16:9)
+      at Object.describe (test/intergration/todo.controller.int.test.js:7:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        15.562s
+Ran all test suites matching /\/home\/coach\/udemy\/nodejsTesting\/todo-tdd\/test\/intergration\/todo.controller.int.test.js/i.
+Jest did not exit one second after the test run has completed.
+
+This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
