@@ -18,3 +18,15 @@
       next(err);
     } 
   };
+  exports.getTodoById = async (req, res, next) => {
+    try {
+    const foundTodo = await TodoModel.findById(req.params.todoId);
+    if(foundTodo) {
+      res.status(200).json(foundTodo); 
+    } else {
+      res.status(404).send();
+    }       
+    } catch (err) {
+      next(err);
+    } 
+  };

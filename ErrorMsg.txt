@@ -1,3 +1,46 @@
+
+9.24.19
+TodoController.getTodoById › should call TodoModel.findById with route parameters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "5d81958eafa35e49913038b4"
+    Received: [Function findById]
+
+Object {_Id: "5d81958eafa35e49913038b4", title: "Make first unit test", done: false}
+
+
+Error 09.21.19
+ 
+   ● TodoController.getTodoById › should call TodoModel.findById with route parameters
+
+    expect(received).toBeCalledWith(...expected)
+
+    Matcher error: received value must be a mock or spy function
+
+    Received has type:  function
+    Received has value: [Function findById]
+
+      25 |         req.params.todoId = "5d81958eafa35e49913038b4";
+      26 |         TodoController.getTodoById(req, res, next);
+    > 27 |         expect(TodoModel.findById).toBeCalledWith("5d81958eafa35e49913038b4"); 
+         |                                    ^
+      28 |     });
+      29 | })
+      30 | 
+
+      at Object.toBeCalledWith (test/unit/todo.controller.test.js:27:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 10 skipped, 11 total
+Snapshots:   0 total
+Time:        5.374s, estimated 6s
+Ran all test suites matching /\/home\/coach\/udemy\/nodejsTesting\/todo-tdd\/test\/unit\/todo.controller.test.js/i with tests matching "should call TodoModel.findById with route parameters".
+Waiting for the debugger to disconnect...
+Killed
+coach@lockerroom:~/udemy/nodejsTesting/todo-tdd$ 
+=============================================================================
+
 coach@lockerroom:~/udemy/nodejsTesting/todo-tdd$ /usr/bin/node --inspect-brk=7377 node_modules/.bin/jest -i '/home/coach/udemy/nodejsTesting/todo-tdd/test/unit/todo.controller.test.js' -t "should handle errors in getTodos" 
 Debugger listening on ws://127.0.0.1:7377/7210fd7a-598b-444c-b241-8edafffa8354
 For help see https://nodejs.org/en/docs/inspector
