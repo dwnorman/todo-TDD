@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pretest": "eslint --ignore-path .gitignore .",
     "test": "jest --watchAll"
   },
   "keywords": [],
@@ -15,6 +16,8 @@
     "node-mocks-http": "^1.8.0"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-strongloop": "^2.1.0",
     "jest": "^24.9.0",
     "supertest": "^4.0.2"
   }
