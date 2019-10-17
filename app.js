@@ -1,25 +1,21 @@
- const express = require("express");
- const todoRoutes = require("./routes/todo.routes"); 
- const mongodb = require("./mongodb/mongodb.connect");
- const app = express();
- 
+const express = require( 'express' );
+const todoRoutes = require( './routes/todo.routes' );
+const mongodb = require( './mongodb/mongodb.connect' );
 
- mongodb.connect();
+const app = express();
 
- app.use(express.json());
+mongodb.connect();
 
- app.use("/todos", todoRoutes);
+app.use( express.json() );
 
- app.use((error, req, res, next) => {
-     res.status(500).json({message: error.message});
- });
+app.use( '/todos', todoRoutes );
 
- app.get("/", (req, res) => {
-     res.json("Hello world!");
- });
+app.use( ( error, req, res, next ) => {
+  res.status( 500 ).json( { message: error.message } );
+} );
 
+app.get( '/', ( req, res ) => {
+  res.json( 'Hello world!' );
+} );
 
-
-
-
- module.exports = app;
+module.exports = app;

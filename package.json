@@ -2,9 +2,8 @@
   "name": "todo-tdd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "pretest": "eslint --ignore-path .gitignore .",
     "test": "jest --watchAll"
   },
   "keywords": [],
@@ -13,11 +12,16 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.7.3",
-    "node-mocks-http": "^1.8.0"
+    "node-mocks-http": "^1.8.0",
+    "prettier": "^1.18.2"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
-    "eslint-config-strongloop": "^2.1.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.9.0",
     "supertest": "^4.0.2"
   }
